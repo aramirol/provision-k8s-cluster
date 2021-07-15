@@ -1,0 +1,27 @@
+- name: get create cluster stdout
+  shell: grep -m 1 -B1 "discovery-token-ca-cert-hash" kubeadm_init.log | sed 's/\\//g' | sed ':a;N;$!ba;s/\n/ /g' | sed -e 's/ \+/ /g' | sed 's/^ //' | sed 's/--control-plane//g'
+  register: kubeadmjoin
+  delegate_to: k8s-master-1.cloudservices.int
+
+- name: kubeadm join workers
+  shell: "{{kubeadmjoin.stdout_lines[0]}} > kubeadm_join.log"
+  when: inventory_hostname in groups['worker']
+
+- name: get create cluster stdout
+  shell: tail -6 $HOME/kubeadm_join.log
+  register: kubeadmjoinlog
+  when: inventory_hostname in groups['worker']
+
+- name: show kubeadm join stdout
+  debug:
+    msg: "{{kubeadmjoinlog.stdout_lines}}"
+  when: inventory_hostname in groups['worker']
+
+- debug:
+    msg:
+    - "Waiting to all pods running."
+
+- pause: seconds=60
+
+
+

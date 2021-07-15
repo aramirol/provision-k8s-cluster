@@ -1,0 +1,9 @@
+---
+# Upgrade cluster
+- include: k8s-master-1.yaml
+- include: k8s-master-2.yaml
+- include: k8s-master-3.yaml
+- include: k8s-compute-1.yaml
+- include: k8s-compute-2.yaml
+#- include: k8s-compute-3.yaml
+- include: status.yaml

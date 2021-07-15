@@ -1,0 +1,8 @@
+---
+# loadbalancer info
+lb: 
+  lb_dns: lb-demo.cloudservices.int
+  lb_port: 6443
+
+k8s:
+  version: 1.19.4

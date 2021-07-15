@@ -1,0 +1,46 @@
+- hosts: localhost
+#  become: yes
+#  gather_facts: yes
+
+######################## Start of Variables ########################
+  vars:
+
+# vmware environment details
+    vcenter_ip: vcenterhumo.core.dom
+    vcenter_username: ansible@core.dom
+    vcenter_password: M@ndr1l2019
+
+
+  tasks:
+
+  - name: Powering OFF K8s nodes
+    vmware_guest:
+      hostname: "{{ vcenter_ip }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ item }}"
+      state: poweredoff
+    with_items:
+      - k8s-master-1.cloudservices.int
+      - k8s-master-2.cloudservices.int
+      - k8s-master-3.cloudservices.int
+      - k8s-compute-1.cloudservices.int    
+      - k8s-compute-2.cloudservices.int
+    delegate_to: localhost
+
+  - name: Remove K8s nodes
+    vmware_guest:
+      hostname: "{{ vcenter_ip }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ item }}"
+      state: absent
+    with_items:
+      - k8s-master-1.cloudservices.int
+      - k8s-master-2.cloudservices.int
+      - k8s-master-3.cloudservices.int
+      - k8s-compute-1.cloudservices.int
+      - k8s-compute-2.cloudservices.int  
+    delegate_to: localhost

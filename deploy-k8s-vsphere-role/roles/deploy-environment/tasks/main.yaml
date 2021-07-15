@@ -1,0 +1,153 @@
+######################## Start of VM Master Deployment Tasks ########################
+
+# Deploy VM from template for K8S master 
+- name: deploy k8s-master-1 from template
+  vmware_guest:
+    hostname: "{{ vmware.vcenter_ip }}"
+    username: "{{ vmware.vcenter_username }}"
+    password: "{{ vmware.vcenter_password }}"
+    validate_certs: no
+    datacenter: "{{ vmware.vmware_datacenter }}"
+    cluster: "{{ vmware.vmware_cluster }}"
+    name: k8s-master-1.cloudservices.int
+    folder: "{{ vmware.k8s_vm_folder }}"
+    state: poweredon
+    template: "{{ vmware.k8s_template_name }}"
+    hardware:
+      memory_mb: 4096
+      num_cpus: 4
+    networks:
+    - name: "{{ vmware.vm_network }}"
+      ip: "{{ k8s.k8s_master1_ip }}"
+      netmask: "{{ k8s.k8s_network_netmask }}"
+      gateway: "{{ k8s.k8s_network_gateway }}"
+      domain: "{{ common.domain }}"
+      start_connected: true
+      type: static
+      dns_servers:
+      - "{{ common.domain }}"
+    wait_for_ip_address: yes
+  delegate_to: localhost
+
+# Deploy VM from template for K8S master 
+- name: deploy k8s-master-2 from template
+  vmware_guest:
+    hostname: "{{ vmware.vcenter_ip }}"
+    username: "{{ vmware.vcenter_username }}"
+    password: "{{ vmware.vcenter_password }}"
+    validate_certs: no
+    datacenter: "{{ vmware.vmware_datacenter }}"
+    cluster: "{{ vmware.vmware_cluster }}"
+    name: k8s-master-2.cloudservices.int
+    folder: "{{ vmware.k8s_vm_folder }}"
+    state: poweredon
+    template: "{{ vmware.k8s_template_name }}"
+    hardware:
+      memory_mb: 4096
+      num_cpus: 4
+    networks:
+    - name: "{{ vmware.vm_network }}"
+      ip: "{{ k8s.k8s_master2_ip }}"
+      netmask: "{{ k8s.k8s_network_netmask }}"
+      gateway: "{{ k8s.k8s_network_gateway }}"
+      domain: "{{ common.domain }}"
+      start_connected: true
+      type: static
+      dns_servers:
+      - "{{ common.domain }}"
+    wait_for_ip_address: yes
+  delegate_to: localhost
+
+# Deploy VM from template for K8S master 
+- name: deploy k8s-master-3 from template
+  vmware_guest:
+    hostname: "{{ vmware.vcenter_ip }}"
+    username: "{{ vmware.vcenter_username }}"
+    password: "{{ vmware.vcenter_password }}"
+    validate_certs: no
+    datacenter: "{{ vmware.vmware_datacenter }}"
+    cluster: "{{ vmware.vmware_cluster }}"
+    name: k8s-master-3.cloudservices.int
+    folder: "{{ vmware.k8s_vm_folder }}"
+    state: poweredon
+    template: "{{ vmware.k8s_template_name }}"
+    hardware:
+      memory_mb: 4096
+      num_cpus: 4
+    networks:
+    - name: "{{ vmware.vm_network }}"
+      ip: "{{ k8s.k8s_master3_ip }}"
+      netmask: "{{ k8s.k8s_network_netmask }}"
+      gateway: "{{ k8s.k8s_network_gateway }}"
+      domain: "{{ common.domain }}"
+      start_connected: true
+      type: static
+      dns_servers:
+      - "{{ common.domain }}"
+    wait_for_ip_address: yes
+  delegate_to: localhost
+
+######################## End of VM Master Deployment Tasks ########################
+
+######################## Start of VM Worker Deployment Tasks ########################
+
+# Deploy VM from template for K8S worker nodes   
+- name: deploy k8s-compute-1 from template
+  vmware_guest:
+    hostname: "{{ vmware.vcenter_ip }}"
+    username: "{{ vmware.vcenter_username }}"
+    password: "{{ vmware.vcenter_password }}"
+    validate_certs: no
+    datacenter: "{{ vmware.vmware_datacenter }}"
+    cluster: "{{ vmware.vmware_cluster }}"
+    name: k8s-compute-1.cloudservices.int
+    folder: "{{ vmware.k8s_vm_folder }}"
+    state: poweredon
+    template: "{{ vmware.k8s_template_name }}"
+    hardware:
+      memory_mb: 4096
+      num_cpus: 4
+    networks:
+    - name: "{{ vmware.vm_network }}"
+      ip: "{{ k8s.k8s_node1_ip }}"
+      netmask: "{{ k8s.k8s_network_netmask }}"
+      gateway: "{{ k8s.k8s_network_gateway }}"
+      domain: "{{ common.domain }}"
+      start_connected: true
+      type: static
+      dns_servers:
+      - "{{ common.domain }}"
+    wait_for_ip_address: yes
+  delegate_to: localhost
+
+# Deploy VM from template for K8S worker nodes   
+- name: deploy k8s-compute-2 from template
+  vmware_guest:
+    hostname: "{{ vmware.vcenter_ip }}"
+    username: "{{ vmware.vcenter_username }}"
+    password: "{{ vmware.vcenter_password }}"
+    validate_certs: no
+    datacenter: "{{ vmware.vmware_datacenter }}"
+    cluster: "{{ vmware.vmware_cluster }}"
+    name: k8s-compute-2.cloudservices.int
+    folder: "{{ vmware.k8s_vm_folder }}"
+    state: poweredon
+    template: "{{ vmware.k8s_template_name }}"
+    hardware:
+      memory_mb: 4096
+      num_cpus: 4
+    networks:
+    - name: "{{ vmware.vm_network }}"
+      ip: "{{ k8s.k8s_node2_ip }}"
+      netmask: "{{ k8s.k8s_network_netmask }}"
+      gateway: "{{ k8s.k8s_network_gateway }}"
+      domain: "{{ common.domain }}"
+      start_connected: true
+      type: static
+      dns_servers:
+      - "{{ common.domain }}"
+    wait_for_ip_address: yes
+  delegate_to: localhost
+
+######################## End of VM Worker Deployment Tasks ########################
+

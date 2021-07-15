@@ -1,0 +1,46 @@
+######################## Start of VM Master Deployment Tasks ########################
+
+# Deploy VM from template for K8S worker nodes   
+- name: yum list {{ k8s.k8s_compute_1 }}
+  shell: yum list --showduplicates kubeadm --disableexcludes=kubernetes
+  when: inventory_hostname in groups['worker1']
+
+- name: install kubeadm {{ k8s.k8s_compute_1 }}
+  shell: yum install -y kubeadm-{{ k8s.k8s_version }} --disableexcludes=kubernetes
+  when: inventory_hostname in groups['worker1']
+
+- name: drain {{ k8s.k8s_compute_1 }}
+  shell: kubectl drain {{ k8s.k8s_compute_1 }} --ignore-daemonsets --delete-local-data
+  when: inventory_hostname in groups['control_plane_1']
+
+- name: upgrade node {{ k8s.k8s_compute_1 }}
+  shell: kubeadm upgrade node > kubeadm_upgrade_{{ k8s.k8s_version }}.log
+  when: inventory_hostname in groups['worker1']
+
+- name: upgrade stdout {{ k8s.k8s_compute_1 }}
+  shell: tail -3 $HOME/kubeadm_upgrade_{{ k8s.k8s_version }}.log
+  register: kubeadminit
+  when: inventory_hostname in groups['worker1']
+
+- name: installkubelet {{ k8s.k8s_compute_1 }}
+  shell: yum install -y kubelet-{{ k8s.k8s_version }} kubectl-{{ k8s.k8s_version }} --disableexcludes=kubernetes
+  when: inventory_hostname in groups['worker1']
+
+- name: daemon-reload {{ k8s.k8s_compute_1 }}
+  shell: systemctl daemon-reload
+  when: inventory_hostname in groups['worker1']
+
+- name: restart kubelet {{ k8s.k8s_compute_1 }}
+  shell: systemctl restart kubelet
+  when: inventory_hostname in groups['worker1']
+
+- name: uncordon {{ k8s.k8s_compute_1 }}
+  shell: kubectl uncordon {{ k8s.k8s_compute_1 }}
+  when: inventory_hostname in groups['control_plane_1']
+
+- debug:
+    msg:
+    - "Waiting to all pods RUNNING."
+  when: inventory_hostname in groups['worker1']
+
+- pause: seconds=20

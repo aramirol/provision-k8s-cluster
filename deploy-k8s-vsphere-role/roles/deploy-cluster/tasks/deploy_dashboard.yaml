@@ -1,0 +1,33 @@
+- name: copy dashboard ingress yaml
+  template:
+    src: ingress-dashboard.yaml
+    dest: '$HOME/ingress-dashboard.yaml'
+    mode: 0644
+  when: inventory_hostname in groups['control_plane_1']
+
+- name: Deploy Kubernetes Dashboard
+  shell: kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+  when: inventory_hostname in groups['control_plane_1']
+
+- name: take token
+  shell: kubectl -n kube-system describe $(kubectl -n kube-system get secret -n kube-system -o name | grep namespace) | grep token
+  register: taketoken
+  when: inventory_hostname in groups['control_plane_1']
+- name: viewing dashboard token
+  debug:
+    msg: "{{taketoken.stdout}}"
+  when: inventory_hostname in groups['control_plane_1']
+
+- pause: seconds=20
+
+- name: Deploy Kubernetes Ingress Dashboard
+  shell: kubectl apply -f $HOME/ingress-dashboard.yaml
+  when: inventory_hostname in groups['control_plane_1']
+
+- debug:
+    msg:
+    - ""
+    - ""
+    - "Please, login to the Dashboard using token above."
+    - ""
+    - ""

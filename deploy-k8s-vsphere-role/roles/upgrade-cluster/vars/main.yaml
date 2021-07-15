@@ -1,0 +1,11 @@
+# K8S environment details
+
+k8s:
+  k8s_master_1: k8s-master-1.cloudservices.int
+  k8s_master_2: k8s-master-2.cloudservices.int
+  k8s_master_3: k8s-master-3.cloudservices.int
+  k8s_compute_1: k8s-compute-1.cloudservices.int
+  k8s_compute_2: k8s-compute-2.cloudservices.int
+  k8s_compute_3: k8s-compute-3.cloudservices.int
+  k8s_release: v1.20.0
+  k8s_version: 1.20.0-0

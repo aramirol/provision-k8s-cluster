@@ -1,0 +1,27 @@
+# common environment details
+common:
+  #ntp_server: ntp_server_ip
+  domain: "cloudservices.int"
+  dns_server: 10.228.129.213
+
+# vmware environment details
+vmware:
+  vcenter_ip: vcenterhumo.core.dom
+  vcenter_username: ansible@core.dom
+  vcenter_password: M@ndr1l2019
+  vmware_datacenter: DC_HUMAREDA
+  vmware_cluster: Cluster_Humareda
+  vm_network: "407_CORE_DESARROLLO_AUTOMATION"
+  k8s_vm_folder: K8S
+  k8s_template_name: centos76-template-aut
+  #k8s_template_name: ubuntu20-template-aut
+
+# K8S environment details
+k8s:
+  k8s_master1_ip: 10.228.129.243
+  k8s_network_netmask: 255.255.255.192
+  k8s_network_gateway: 10.228.129.193
+  k8s_master2_ip: 10.228.129.244
+  k8s_master3_ip: 10.228.129.245
+  k8s_node1_ip: 10.228.129.250
+  k8s_node2_ip: 10.228.129.253

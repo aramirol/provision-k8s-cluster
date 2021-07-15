@@ -1,0 +1,15 @@
+- name: copy k8s config file
+  template:
+    src: k8s.conf
+    dest: '/etc/sysctl.d/k8s.conf'
+    mode: 0644
+  when: inventory_hostname in groups['kube_cluster_1']
+
+- name: charge sysctl vars
+  shell: sysctl --system
+  register: sysctlvars
+  when: inventory_hostname in groups['kube_cluster_1']
+- name: viewing sysctl vars stdout
+  debug:
+    msg: "{{sysctlvars.stdout}}"
+  when: inventory_hostname in groups['kube_cluster_1']

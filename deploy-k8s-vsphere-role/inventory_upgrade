@@ -1,0 +1,6 @@
+[kube_cluster_1]
+k8s-master-1.cloudservices.int ansible_host=10.228.129.243 ansible_user=root
+k8s-master-2.cloudservices.int ansible_host=10.228.129.244 ansible_user=root
+k8s-master-3.cloudservices.int ansible_host=10.228.129.245 ansible_user=root
+k8s-compute-1.cloudservices.int ansible_host=10.228.129.250 ansible_user=root
+k8s-compute-2.cloudservices.int ansible_host=10.228.129.253 ansible_user=root

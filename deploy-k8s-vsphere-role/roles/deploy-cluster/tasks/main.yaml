@@ -1,0 +1,12 @@
+---
+# Deploy cluster
+#- include: customize_hostname.yaml
+#- include: customize_os.yaml
+#- include: install-kubexxx.yaml
+#- include: copy_k8s-conf.yaml
+#- include: kubeadm_init_masters.yaml
+#- include: kubeadm_join_computes.yaml
+- include: check_workers.yaml
+- include: deploy_ingress_nginx.yaml
+- include: deploy_dashboard.yaml
+- include: resume_installation.yaml

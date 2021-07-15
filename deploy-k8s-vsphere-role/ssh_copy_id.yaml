@@ -1,0 +1,9 @@
+###############
+ssh-copy-id -i k8s-cloudservices.pub root@k8s-master-1.cloudservices.int
+ssh-copy-id -i k8s-cloudservices.pub root@k8s-master-2.cloudservices.int
+ssh-copy-id -i k8s-cloudservices.pub root@k8s-master-3.cloudservices.int
+ssh-copy-id -i k8s-cloudservices.pub root@k8s-compute-1.cloudservices.int
+
+###############
+eval "$(ssh-agent -s)"
+ssh-add k8s-cloudservices

@@ -1,0 +1,7 @@
+- debug:
+    msg:
+    - "* * * * * * * * *"
+    - ""
+    - "CONGRATULATION, you have a Kubernetes Cluster ready to enjoy"
+    - ""
+    - "* * * * * * * * *"
