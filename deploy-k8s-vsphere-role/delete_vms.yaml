@@ -6,9 +6,9 @@
   vars:
 
 # vmware environment details
-    vcenter_ip: vcenterhumo.core.dom
-    vcenter_username: ansible@core.dom
-    vcenter_password: M@ndr1l2019
+    vcenter_ip: vcenter
+    vcenter_username: username
+    vcenter_password: password
 
 
   tasks:
