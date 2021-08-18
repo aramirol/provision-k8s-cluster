@@ -1,6 +1,6 @@
 # Deploy Kubernetes with Ansible
 
-![](https://img.shields.io/badge/platform-kubernetes-blue?logo=kubernetes&logoColor=blue)
+![](https://img.shields.io/badge/platform-kubernetes-blue?logo=kubernetes&logoColor=white)
 ![](https://img.shields.io/badge/platform-vsphere-green?logo=vmware&logoColor=white)
 
 <img src=".logos/Kubernetes_Logo.png" data-canonical-src=".logos/Kubernetes_Logo.png" width="20%" height="20%" />

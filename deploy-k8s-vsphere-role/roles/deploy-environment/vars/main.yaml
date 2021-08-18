@@ -2,16 +2,16 @@
 common:
   #ntp_server: ntp_server_ip
   domain: "cloudservices.int"
-  dns_server: 10.228.129.213
+  dns_server: "IP Address"
 
 # vmware environment details
 vmware:
-  vcenter_ip: vcenterhumo.core.dom
-  vcenter_username: ansible@core.dom
-  vcenter_password: M@ndr1l2019
-  vmware_datacenter: DC_HUMAREDA
-  vmware_cluster: Cluster_Humareda
-  vm_network: "407_CORE_DESARROLLO_AUTOMATION"
+  vcenter_ip: vcenter
+  vcenter_username: username
+  vcenter_password: password
+  vmware_datacenter: datacenter
+  vmware_cluster: cluster
+  vm_network: "network"
   k8s_vm_folder: K8S
   k8s_template_name: centos76-template-aut
   #k8s_template_name: ubuntu20-template-aut
