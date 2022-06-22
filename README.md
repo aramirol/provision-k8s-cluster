@@ -6,6 +6,10 @@
 ![](https://img.shields.io/badge/platform-aws-yellow?logo=amazonaws&logoColor=white)
 ![](https://img.shields.io/badge/platform-gcp-blue?logo=googlecloud&logoColor=white)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=aramirol_provision-k8s-cluster&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=aramirol_provision-k8s-cluster)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=aramirol_provision-k8s-cluster)](https://sonarcloud.io/summary/new_code?id=aramirol_provision-k8s-cluster)
+
 Provision On-Premise &amp; Cloud Provider Kubernetes solution
 
 * [deploy-k8s-vsphere-role](deploy-k8s-vsphere-role)
